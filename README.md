@@ -1,3 +1,5 @@
+
+
 # Code assignment: document search
 
 This assignment aims to explore multiple aspects of taking a simple Python web application and making it production-grade.
@@ -28,10 +30,10 @@ For example, if the web server is serving at http://localhost:8080, and the word
 The app currently has a `Dockerfile` included under `doc-search/`.
 
 1. Every commit to application code (`.py` files) results in a slow build of the container image. Modify the `Dockerfile` to make the build faster.
-> Moved the application code to the later layer
+> **Moved the application code to the later layer**
 2. How can you minimize the size of the resulting container image? Modify the `Dockerfile` or describe your solution.
-> The samples/data folder should be on the mounted volume.
-The persistent volume configuration differ for different platforms
+> **The samples/data folder should be on the mounted volume.
+The persistent volume configuration differ for different platforms**
 ```
 https://stackoverflow.com/questions/50016515/mounting-a-directory-for-pods-in-kubernetes
 
@@ -69,14 +71,14 @@ curl http://localhost:8080?q=think
 
 ```
 4. We want Kubernetes to tolerate a slow start for our app. Implement this behavior in your chart. Bonus points if you can simulate a slow start and test your solution.
-> index_init function with a sleep to simulate slow start:
+> **index_init function with a sleep to simulate slow start:**
 <https://github.com/lxndrv/infra-eng-assignment/blob/main/doc-search/src/__init__.py#L35>
 
-> When finished index_init sets index.isReady to True
-The index.isReady is used to determine response status code in /readiness endpoint 
+> **When finished index_init sets index.isReady to True
+The index.isReady is used to determine response status code in /readiness endpoint:** 
 <https://github.com/lxndrv/infra-eng-assignment/blob/main/doc-search/src/__init__.py#L21>
 
-> livenessProbe and readinessProbe settings:
+> **livenessProbe and readinessProbe settings:**
 <https://github.com/lxndrv/infra-eng-assignment/blob/main/doc-search-helm/templates/deployment.yaml#L40>
 
 
