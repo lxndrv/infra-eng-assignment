@@ -10,13 +10,16 @@ index = Index(None)
 
 @route('/')
 def search():
+    if not index.isReady:
+        response.status = 503
+        return dict({"Status":"Not ready."})
+        
     q = request.query.q
     print(q, type(q))
     return dict(results=list(index.search(str(q))))
 
 @route('/readiness')
 def readiness():
- 
     print('readiness', index.isReady)
     if index.isReady:
         response.status = 200
