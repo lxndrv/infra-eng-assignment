@@ -1,10 +1,12 @@
 FROM python:3.10-slim-bullseye
-COPY src /app
-COPY requirements.txt /app
 
-RUN pip install -r app/requirements.txt
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt
 
 COPY samples /data
+
+COPY src /app
 
 WORKDIR /app
 EXPOSE 8080
